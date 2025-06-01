@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>ترتيب الكلام</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 30px; direction: rtl; }
+    textarea { width: 80%; height: 150px; margin-bottom: 20px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <h2>أدخل الكلام 👇</h2>
+  <textarea id="inputText" placeholder="اكتب هنا..."></textarea><br>
+  <button onclick="sortText()">ترتيب ونسخ</button>
+
+  <h3>الناتج:</h3>
+  <textarea id="outputText" readonly></textarea>
+
+  <script>
+    function sortText() {
+      let text = document.getElementById("inputText").value;
+      let sorted = text.split('\n').map(t => t.trim()).filter(t => t)
+                      .sort((a, b) => a.localeCompare(b, 'ar'));
+      let result = sorted.join('\n');
+      document.getElementById("outputText").value = result;
+      navigator.clipboard.writeText(result);
+      alert("تم النسخ ✅");
+    }
+  </script>
+
+</body>
+</html>
